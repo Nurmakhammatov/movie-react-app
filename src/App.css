@@ -1,0 +1,25 @@
+.container-fluid {
+  background-color: #15141f;
+  color: white;
+}
+
+.main-title {
+  font-size: 1.9em;
+}
+
+.search-inp {
+  width: 86.5vw;
+  height: 2.7em;
+  border-radius: 3em;
+  background-color: #211f30;
+  color: white;
+}
+
+.menu {
+  cursor: pointer;
+}
+
+.menu-selected {
+  color: #ff8f71;
+  border-bottom: #ff8f71 solid 0.125em;
+}
