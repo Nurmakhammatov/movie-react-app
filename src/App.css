@@ -8,18 +8,38 @@
 }
 
 .search-inp {
-  width: 86.5vw;
-  height: 2.7em;
-  border-radius: 3em;
-  background-color: #211f30;
   color: white;
+  display: flex;
 }
 
 .menu {
   cursor: pointer;
 }
 
-.menu-selected {
+/* .menu-selected {
   color: #ff8f71;
   border-bottom: #ff8f71 solid 0.125em;
+} */
+
+.movieImg {
+  border-radius: 2.5em;
+}
+
+.links {
+  text-decoration: none;
+  color: white;
+}
+.links:hover {
+  text-decoration: none;
+  color: #ff8f71;
+  border-bottom: #ff8f71 solid 0.125em;
+}
+
+.link-tag {
+  text-decoration: none;
+  color: white;
+}
+.link-tag:visited {
+  text-decoration: none;
+  color: white;
 }
