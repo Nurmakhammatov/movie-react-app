@@ -70,6 +70,7 @@ function Main() {
     if (query !== "") {
       const { data } = await getSearchMovie(query);
       setFilteredMovies(data.results.filter((m) => m.media_type !== "person"));
+
       setSearch(false);
     } else {
       setFilteredMovies(trends);
@@ -154,6 +155,7 @@ function Main() {
             />
           }
         />
+
         <Route
           path={links.search}
           element={

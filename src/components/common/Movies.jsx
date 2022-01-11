@@ -8,7 +8,7 @@ function Movies({ movie, options, handleNext, search }) {
       {search ? <h5 className="mb-3 text-center">Trends last day</h5> : null}
       {movie.map((m) =>
         !m.poster_path ? null : (
-          <div key={`${m.id}`} className="col-6">
+          <div key={`${m.id}`} className="col-6 pb-3">
             <img
               className="img-fluid movieImg"
               src={api.imgSrc + m.poster_path}
