@@ -21,3 +21,6 @@ export const getSearchMovie = (query, num) =>
 
 export const getTrends = () =>
   httpSevice.get(`${api.apiUrl}trending/all/day?${api.apiKey}`);
+
+export const getMovieDetails = (movie_id) =>
+  httpSevice.get(`${api.apiUrl}movie/${movie_id}?${api.apiKey}`);

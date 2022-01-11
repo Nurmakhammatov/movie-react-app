@@ -2,6 +2,9 @@
   background-color: #15141f;
   color: white;
 }
+.not-found {
+  height: 100vh;
+}
 
 .main-title {
   font-size: 1.9em;
@@ -16,13 +19,8 @@
   cursor: pointer;
 }
 
-/* .menu-selected {
-  color: #ff8f71;
-  border-bottom: #ff8f71 solid 0.125em;
-} */
-
 .movieImg {
-  border-radius: 2.5em;
+  border-radius: 20%;
 }
 
 .links {
@@ -30,6 +28,11 @@
   color: white;
 }
 .links:hover {
+  text-decoration: none;
+  color: #ff8f71;
+  border-bottom: #ff8f71 solid 0.125em;
+}
+.links-active {
   text-decoration: none;
   color: #ff8f71;
   border-bottom: #ff8f71 solid 0.125em;

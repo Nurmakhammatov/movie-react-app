@@ -28,10 +28,10 @@ const CustomInput = styled.input`
   padding: 0.5em;
   text-decoration: none;
 `;
-function Search({ handleSearchMovie }) {
+function Search({ handleSearchMovie, links }) {
   return (
     <div>
-      <Link to="/search" className="link-tag">
+      <Link to={links.search} className="link-tag">
         <InputWrapper className="col-sm px-3 py-3 text-center">
           <FaSearch />
           <CustomInput
