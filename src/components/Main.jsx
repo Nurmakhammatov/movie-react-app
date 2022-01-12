@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import {
   getMovieDetails,
+  getDetails,
+  getTvDetails,
   getPopularMovies,
   getPopularTv,
   getSearchMovie,
@@ -14,6 +16,7 @@ import Movies from "./common/Movies";
 import Layout from "./common/Layout";
 import Search from "./common/Search";
 import About from "./common/About";
+import ButtonTop from "./common/ButtonTop";
 
 function Main() {
   const [movies, setMovies] = useState([]);
@@ -24,6 +27,8 @@ function Main() {
   const [active, setActive] = useState(null);
   const [movieList, setMovieList] = useState([]);
   const [tvSeriesList, setTvSeriesList] = useState([]);
+  const [details, setDetails] = useState({});
+  // const [id, setId] = useState({});
 
   const [moviePage, setMoviePage] = useState(1);
 
@@ -51,9 +56,12 @@ function Main() {
     setFilteredMovies(data.results);
   };
 
-  const fetchAboutMovie = async () => {
-    const aboutFilm = getMovieDetails(425909);
-  };
+  // const fetchAboutMovie = async () => {
+  //   const { data } = getMovieDetails(425909);
+  //   setDetails(data);
+  // };
+  // console.log(fetchAboutMovie());
+  // console.log(details);
 
   useEffect(() => {
     fetchData();
@@ -69,8 +77,14 @@ function Main() {
     setActive(2);
     if (query !== "") {
       const { data } = await getSearchMovie(query);
-      setFilteredMovies(data.results.filter((m) => m.media_type !== "person"));
-
+      setFilteredMovies(
+        data.results.filter(
+          (m) =>
+            m.media_type !== "person" &&
+            m.poster_path !== null &&
+            m.backdrop_path !== null
+        )
+      );
       setSearch(false);
     } else {
       setFilteredMovies(trends);
@@ -115,12 +129,29 @@ function Main() {
   };
   // console.log("Movies:", movies);
   // console.log("Tv:", tvSeries);
-  console.log("SearchList:", filteredMovies);
+  // console.log("SearchList:", filteredMovies);
   // console.log("Trends:", trends);
 
   const handleActive = () => {
     setActive(0);
   };
+
+  const handleGetMovieInfo = async (m) => {
+    const data = await getMovieDetails(m.id);
+    setDetails(data.data);
+  };
+
+  const handleGetTvInfo = async (m) => {
+    const data = await getTvDetails(m.id);
+    setDetails(data.data);
+  };
+  const handleGetInfo = async (m) => {
+    const data = await getDetails(m.id, m.media_type);
+    setDetails(data.data);
+  };
+  // const handleScrollToTop = () => {
+  //   window.scrollTo(0, 0);
+  // };
 
   return (
     <div className="container-fluid pb-3">
@@ -141,6 +172,7 @@ function Main() {
               movie={movies}
               handleNext={handleNextMoviePage}
               options={options}
+              getInfo={handleGetMovieInfo}
             />
           }
         />
@@ -152,6 +184,7 @@ function Main() {
               handleNext={handleNextTvPage}
               options={options}
               movie={tvSeries}
+              getInfo={handleGetTvInfo}
             />
           }
         />
@@ -159,10 +192,17 @@ function Main() {
         <Route
           path={links.search}
           element={
-            <Movies movie={filteredMovies} options={options} search={search} />
+            <Movies
+              movie={filteredMovies}
+              options={options}
+              search={search}
+              getInfo={handleGetInfo}
+            />
           }
         />
+        <Route path={`/${details.id}`} element={<About details={details} />} />
       </Routes>
+      <ButtonTop />
     </div>
   );
 }

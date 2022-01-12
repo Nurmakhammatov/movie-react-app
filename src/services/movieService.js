@@ -22,5 +22,11 @@ export const getSearchMovie = (query, num) =>
 export const getTrends = () =>
   httpSevice.get(`${api.apiUrl}trending/all/day?${api.apiKey}`);
 
-export const getMovieDetails = (movie_id) =>
-  httpSevice.get(`${api.apiUrl}movie/${movie_id}?${api.apiKey}`);
+export const getMovieDetails = (id) =>
+  httpSevice.get(`${api.apiUrl}movie/${id}?${api.apiKey}`);
+
+export const getTvDetails = (id) =>
+  httpSevice.get(`${api.apiUrl}tv/${id}?${api.apiKey}`);
+
+export const getDetails = (id, type) =>
+  httpSevice.get(`${api.apiUrl}${type}/${id}?${api.apiKey}`);
